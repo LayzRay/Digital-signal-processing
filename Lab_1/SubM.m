@@ -1,8 +1,8 @@
-function [ M ] = SubM( M )
+function [ M ] = SubM ( M )
 % Заменяет в M-последовательности 0 на 1, 1 на -1.
 
 
-    for i = 1:length( M )
+    for i = 1 : length( M )
     
         if ( M( i ) )
     
