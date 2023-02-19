@@ -1,5 +1,8 @@
 function [ M ] = Mfun ( A, C )
 
+    % A - фаза.
+    % С - характеристический многочлен.
+
     m = length( C );
     
     M = zeros( 1, m );
