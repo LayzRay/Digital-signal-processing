@@ -1,5 +1,17 @@
 function [ W ] = Wfun ( data, r )
 
+    temp = zeros( 1, r );
+
+    char = dec2bin( data );
+
+    for i = 0 : length( char ) - 1
+
+        temp( r - i ) = str2double( char( length( char ) - i ) );
+
+    end
+
+    data = temp;
+
     W = zeros( 1, 2 ^ r );
 
     T = zeros( 1, 2 ^ ( r - 1 ) );
