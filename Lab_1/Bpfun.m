@@ -20,20 +20,33 @@ function [ data ] = Bpfun ( w, r )
         end
 
     end
-    
-    [ m, index ] = max( matrix( :, r + 1 ) );
 
-    index = index - 1;
+    data = matrix( :, r + 1 )';
+    binary_index = 0;
 
-    data = dec2bin( index );
+    for i = 1 : 2 ^ r
 
-    for i = 1 : round( length( data ) / 2, TieBreaker="tozero")
+        if ( data ( i ) >= 2 ^ r / 2 ) && ( binary_index ~= i - 1 )
 
-        temp = data( length( data ) - i + 1 );
-        data( length( data ) - i + 1 ) = data( i );
-        data( i ) = temp;
+            binary_index = zeros( 1, r );
+
+            char = dec2bin( i - 1 );
+
+            for j = 0 : length( char ) - 1
+
+                binary_index( r - j ) = str2double( char( length( char ) - j ) );
+
+            end
+
+            binary_index = binary_index ( length( binary_index ) : -1 : 1 );
+            binary_index = bin2dec( dec2bin( binary_index )' );
+
+            temp = data ( binary_index + 1 );
+            data( binary_index + 1 ) = data( i );
+            data( i ) = temp;
+
+        end
+
     end
-
-    data = bin2dec( data );
 
 end

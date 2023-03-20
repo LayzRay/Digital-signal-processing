@@ -10,7 +10,9 @@ function [ W ] = Wfun ( data, r )
 
     end
 
-    data = temp;
+    data_bin = temp;
+
+    fprintf( "Двоичное представление числа %d:\n%s\n", data, dec2bin( data_bin ) )
 
     W = zeros( 1, 2 ^ r );
 
@@ -20,7 +22,7 @@ function [ W ] = Wfun ( data, r )
 
         for i = 2 ^ k : 2 ^ ( k + 1 ) - 1 
 
-            MUX = mod( sum( [ data( k + 1 ), T( 2 ^ k ) ] ), 2 );
+            MUX = mod( sum( [ data_bin( k + 1 ), T( 2 ^ k ) ] ), 2 );
 
             T = [ MUX , T( 1 : length( T ) - 1 ) ];
             W( i + 1 ) = MUX;
